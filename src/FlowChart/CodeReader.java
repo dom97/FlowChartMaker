@@ -50,8 +50,8 @@ public class CodeReader {
 		int startOfBody = 0; 
 		
 		for (int i = 0; i < lines.size(); i++) {
-			if (lines.get(i).contains("%%Body")) {
-				startOfBody = i;
+			if (lines.get(i).indexOf("%% Body") >=0) {
+				startOfBody = i+1;
 				break;
 			}
 		}
@@ -59,7 +59,7 @@ public class CodeReader {
 		codeBody = new String[lines.size() - startOfBody];
 		
 		for (int i = startOfBody; i < lines.size(); i++) {
-			codeBody[i] = lines.get(i);
+			codeBody[i - startOfBody] = lines.get(i);
 		}		
 		
 		return codeBody;
